@@ -1,9 +1,9 @@
 # Panduan publikasi GitHub dan deployment Vercel
 
-**Status: BELUM dipublikasikan, BELUM deploy, BELUM dikumpulkan ke SPON.**
-URL repository public: **menunggu publikasi dan verifikasi**.
-URL aplikasi Vercel: **menunggu deployment dan verifikasi**.
-Panduan ini tidak menjadi bukti deployment berhasil.
+**Status: SUDAH dipublikasikan ke GitHub Public dan SUDAH dideploy ke Vercel (1 Oktober 2026). BELUM dikumpulkan ke SPON.**
+URL repository public: https://github.com/aldiii1-XZ/si5b_latihan_restful_aldi_yonatan_rusnawan
+URL aplikasi Vercel: https://si5blatihanrestfulaldiyonatanrusnaw.vercel.app
+Kedua URL di atas diverifikasi langsung dari keluaran GitHub CLI dan Vercel CLI, bukan ditebak dari nama.
 
 ## 1. Pemeriksaan sebelum publikasi
 

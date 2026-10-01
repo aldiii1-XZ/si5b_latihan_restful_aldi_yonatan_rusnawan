@@ -7,11 +7,28 @@
 | Kelas | SI5B |
 | Repository tugas | `si5b_latihan_restful_aldi_yonatan_rusnawan` |
 | Tanggal pengujian | 30 September 2026, WIB |
-| Status GitHub Public | **BELUM — URL menunggu publikasi dan verifikasi** |
-| Status Vercel | **BELUM — URL menunggu deployment dan verifikasi** |
+| URL repository GitHub Public | https://github.com/aldiii1-XZ/si5b_latihan_restful_aldi_yonatan_rusnawan |
+| URL aplikasi Vercel | https://si5blatihanrestfulaldiyonatanrusnaw.vercel.app |
+| Status GitHub Public | **PUBLIK — diverifikasi 1 Oktober 2026** |
+| Status Vercel | **DEPLOY PRODUKSI SIAP — diverifikasi 1 Oktober 2026** |
 | Status SPON | **BELUM dikumpulkan** |
 
-Instruksi LMS yang diberikan: laporan praktikum dalam repository GitHub Public dengan format `si5b_latihan_restful_nama`, lalu kumpulkan URL repository dan aplikasi Vercel melalui SPON. Deadline: **Kamis, 1 Oktober 2026 pukul 13:30 WIB**. Dokumen ini melaporkan hasil lokal, bukan bukti publikasi. Tidak ada screenshot atau URL deployment rekaan.
+Instruksi LMS yang diberikan: laporan praktikum dalam repository GitHub Public dengan format `si5b_latihan_restful_nama`, lalu kumpulkan URL repository dan aplikasi Vercel melalui SPON. Deadline: **Kamis, 1 Oktober 2026 pukul 13:30 WIB**.
+
+> **Catatan tentang URL.** Domain Vercel yang benar adalah `si5blatihanrestfulaldiyonatanrusnaw.vercel.app` (tanpa `an` pada `rusnaw`), dibaca langsung dari output deployment — bukan ditebak dari nama repository. Nama repository memakai garis bawah, sedangkan domain Vercel menggantinya menjadi huruf tanpa pemisah, sehingga keduanya memang berbeda.
+
+Verifikasi endpoint produksi (1 Oktober 2026):
+
+| Uji | Hasil |
+| --- | --- |
+| `GET /mahasiswa` | `200`, dua data awal |
+| Header CORS untuk origin `http://localhost:5173` | `Access-Control-Allow-Origin: http://localhost:5173` |
+| Preflight `OPTIONS /mahasiswa/1` | `204`, `Allow-Methods: GET,POST,PUT,DELETE`, `Allow-Headers: x-api-key,content-type` |
+| `POST /mahasiswa` tanpa kunci | `401 {"message":"API key tidak valid"}` |
+| `GET /abc` | `404 {"message":"Rute GET /abc tidak ditemukan"}` |
+| `GET /error-uji` | `404` — route uji nonaktif di produksi |
+
+Pengujian ini memakai klien HTTP, bukan browser. Header CORS terbukti dikirim server, tetapi penegakan aturan origin tetap dilakukan browser dan belum diuji dari halaman web sungguhan.
 
 ## 1. Tujuan
 
@@ -138,7 +155,7 @@ Untuk menjalankan manual:
 6. Gunakan contoh `requests.http` lewat alat HTTP pilihan. Untuk mengisi kunci, buat salinan bernama `requests.local.http` yang diabaikan Git. Body mutasi harus JSON dengan `Content-Type: application/json` dan header `x-api-key`.
 7. Hentikan server dengan Ctrl+C. Jangan menjalankan server kedua pada port yang sudah dipakai.
 
-Opsional untuk frontend CORS lokal: pada terminal kedua, jalankan `python -m http.server 5173 --directory frontend-uji`, lalu buka `http://localhost:5173`. Python hanya dibutuhkan untuk cara penyajian frontend ini, bukan API. Tombol melakukan GET ke localhost:3000. **Pengujian browser ini belum dilakukan dalam bukti paket**; jangan membuka file langsung dengan `file://` dan menganggap origin-nya sama.
+Opsional untuk frontend CORS lokal: pada terminal kedua, jalankan `python -m http.server 5173 --directory frontend-uji`, lalu buka `http://localhost:5173`. Python hanya dibutuhkan untuk cara penyajian frontend ini, bukan API. Tombol melakukan GET ke localhost:3000. **Pengujian browser untuk halaman ini belum dilakukan dalam bukti paket**; jangan membuka file langsung dengan `file://` dan menganggap origin-nya sama.
 
 ## 8. Metode dan bukti pengujian asli
 
@@ -172,7 +189,7 @@ Ini adalah penambahan regression tests terhadap kode yang sudah ada, **bukan kla
 | 27 | Origin berbeda: header Allow-Origin tidak cocok peminta | LULUS |
 | 28 | OPTIONS tanpa kunci: 204; allow-methods dan allow-headers sesuai | LULUS |
 
-CORS di sini diuji pada level header HTTP, **belum pada browser**. Origin yang tidak cocok masih dapat menerima status 200 lewat klien HTTP; browser yang menegakkan pembatasan origin. Tes tidak memverifikasi hosting Vercel, rendering UI, atau persistensi data serverless. Versi runtime Vercel perlu dikonfirmasi saat deployment.
+CORS di sini diuji pada level header HTTP, **belum pada browser**. Origin yang tidak cocok masih dapat menerima status 200 lewat klien HTTP; browser yang menegakkan pembatasan origin. Tes lokal ini tidak memverifikasi hosting Vercel; endpoint produksi diuji terpisah dengan `curl` dan hasilnya dicatat pada tabel verifikasi di bagian atas laporan. Persistensi data serverless tidak dijamin karena penyimpanan masih berupa array dalam memori.
 
 ## 9. Pelestarian sumber dan perubahan paket
 
