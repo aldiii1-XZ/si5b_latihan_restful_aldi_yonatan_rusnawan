@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Uji CORS</title>
+</head>
+<body>
+  <h1>Uji CORS</h1>
+  <button id="tombol">Panggil API</button>
+  <pre id="hasil"></pre>
+
+  <script>
+    document.getElementById('tombol').addEventListener('click', async () => {
+      const hasil = document.getElementById('hasil');
+      try {
+        const res = await fetch('http://localhost:3000/mahasiswa');
+        hasil.textContent = JSON.stringify(await res.json(), null, 2);
+      } catch (err) {
+        hasil.textContent = 'Gagal: ' + err.message + ' (buka Console untuk detail)';
+      }
+    });
+  </script>
+</body>
+</html>

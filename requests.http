@@ -1,0 +1,75 @@
+# Contoh, bukan bukti hasil eksekusi. Jangan simpan kunci nyata pada file ini.
+# Salin menjadi requests.local.http (diabaikan Git), ganti GANTI_KUNCI_LOKAL.
+# Host di bawah hanya localhost, bukan URL deployment.
+
+### Root: 200 Halo
+GET http://localhost:3000/
+
+### Daftar publik
+GET http://localhost:3000/mahasiswa
+
+### Filter
+GET http://localhost:3000/mahasiswa?jurusan=Informatika
+
+### Detail
+GET http://localhost:3000/mahasiswa/1
+
+### Data hilang: 404
+GET http://localhost:3000/mahasiswa/99
+
+### ID tidak valid: 400
+GET http://localhost:3000/mahasiswa/abc
+
+### Tanpa auth: 401
+POST http://localhost:3000/mahasiswa
+Content-Type: application/json
+
+{"nama":"Citra","jurusan":"Sistem Informasi"}
+
+### Tambah: 201
+POST http://localhost:3000/mahasiswa
+Content-Type: application/json
+x-api-key: GANTI_KUNCI_LOKAL
+
+{"nama":"Citra","jurusan":"Sistem Informasi"}
+
+### Validasi: 400
+POST http://localhost:3000/mahasiswa
+Content-Type: application/json
+x-api-key: GANTI_KUNCI_LOKAL
+
+{"nama":"Citra"}
+
+### JSON rusak: 400
+POST http://localhost:3000/mahasiswa
+Content-Type: application/json
+x-api-key: GANTI_KUNCI_LOKAL
+
+{"nama":
+
+### Ubah: 200
+PUT http://localhost:3000/mahasiswa/1
+Content-Type: application/json
+x-api-key: GANTI_KUNCI_LOKAL
+
+{"nama":"Andi Baru","id":999}
+
+### Hapus: 204
+DELETE http://localhost:3000/mahasiswa/2
+x-api-key: GANTI_KUNCI_LOKAL
+
+### Rute hilang: 404
+GET http://localhost:3000/abc
+
+### Error generik: 500 lokal; 404 saat NODE_ENV=production
+GET http://localhost:3000/error-uji
+
+### CORS (header HTTP, bukan uji browser)
+GET http://localhost:3000/mahasiswa
+Origin: http://localhost:5173
+
+### Preflight: 204, tanpa kunci
+OPTIONS http://localhost:3000/mahasiswa/1
+Origin: http://localhost:5173
+Access-Control-Request-Method: DELETE
+Access-Control-Request-Headers: content-type,x-api-key

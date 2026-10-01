@@ -1,0 +1,30 @@
+{
+  "verified_at": "2026-09-30T21:48:21.683452+07:00",
+  "files": {
+    "app.js": {
+      "sha256_source": "abb7db041f68fdea1cc8d252d0254532618ce3e3292b8db519c6e28ca7144a2f",
+      "sha256_output": "abb7db041f68fdea1cc8d252d0254532618ce3e3292b8db519c6e28ca7144a2f",
+      "identical": true
+    },
+    "package.json": {
+      "sha256_source": "26bde9c815eed94fbf9d0b885f7192bc8ccd0550258abc46241d2d6ac0c07ae6",
+      "sha256_output": "26bde9c815eed94fbf9d0b885f7192bc8ccd0550258abc46241d2d6ac0c07ae6",
+      "identical": true
+    },
+    "package-lock.json": {
+      "sha256_source": "03f48bc5f9a7754a1d34bf76e8a16b88c7626326081a81ee66b81a1b1772d2d7",
+      "sha256_output": "03f48bc5f9a7754a1d34bf76e8a16b88c7626326081a81ee66b81a1b1772d2d7",
+      "identical": true
+    },
+    ".env.example": {
+      "sha256_source": "a02fb4344a34c68859409ec30a490984de7dfef8305fa3002319aaf9bd9d4347",
+      "sha256_output": "a02fb4344a34c68859409ec30a490984de7dfef8305fa3002319aaf9bd9d4347",
+      "identical": true
+    },
+    "frontend-uji/index.html": {
+      "sha256_source": "2a3a4818306c4406c8a982dad9d968961e5d309e27cbe76be68b01edce24c32f",
+      "sha256_output": "2a3a4818306c4406c8a982dad9d968961e5d309e27cbe76be68b01edce24c32f",
+      "identical": true
+    }
+  }
+}
