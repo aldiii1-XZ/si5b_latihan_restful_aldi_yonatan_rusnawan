@@ -9,3 +9,5 @@ backup/
 *.log
 *.zip
 requests.local.http
+
+.vercel
